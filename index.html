@@ -203,6 +203,46 @@ p{margin:0 0 1em}
 .note{margin-top:26px;padding:20px 22px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);font-size:15px;color:var(--muted)}
 .note b{color:var(--ink)}
 
+/* ============ HOTELS MODAL ============ */
+.country__more{margin-top:14px;width:100%;justify-content:center;padding:13px 20px;font-size:15px}
+.hmodal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.hmodal.is-open{display:flex}
+.hmodal__bg{position:absolute;inset:0;background:rgba(10,10,10,.62);backdrop-filter:blur(4px)}
+.hmodal__box{position:relative;width:100%;max-width:720px;max-height:86vh;display:flex;flex-direction:column;
+  background:var(--paper);border-radius:22px;overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.4);animation:hpop .24s ease}
+@keyframes hpop{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.hmodal__head{padding:24px 26px;color:#fff;display:flex;align-items:center;gap:14px;position:relative;flex:none}
+.hmodal__head h3{margin:0;font-size:24px;font-weight:900}
+.hmodal__head span{display:block;font-size:14px;opacity:.88;font-weight:700}
+.hmodal__close{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.2);color:#fff;font-size:22px;line-height:1;display:grid;place-items:center;transition:.18s}
+.hmodal__close:hover{background:rgba(255,255,255,.34);transform:rotate(90deg)}
+.hmodal__body{padding:6px 26px 26px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.hdemo{margin:16px 0 6px;padding:11px 14px;border-radius:var(--radius-sm);background:rgba(255,1,56,.08);
+  border-left:3px solid var(--red);font-size:13.5px;color:var(--muted)}
+.hseg{margin-top:22px}
+.hseg__title{font-size:12px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+.hotel{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px dashed var(--line)}
+.hotel:last-child{border-bottom:0}
+.hotel__main{flex:1;min-width:0}
+.hotel__name{font-weight:800;font-size:16px;margin:0 0 3px}
+.hotel__meta{margin:0;font-size:13.5px;color:var(--muted)}
+.hotel__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
+.htag{font-size:11.5px;font-weight:800;letter-spacing:.04em;padding:3px 9px;border-radius:99px;background:var(--sand);color:var(--ink)}
+.htag--meal{background:rgba(255,128,0,.16);color:#B33A00}
+.hotel__price{text-align:right;flex:none}
+.hotel__price b{display:block;font-size:19px;font-weight:900;letter-spacing:-.01em;white-space:nowrap}
+.hotel__price span{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:800}
+.hmodal__foot{padding:16px 26px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);flex:none;background:var(--sand)}
+@media(max-width:640px){
+  .hmodal{padding:0}
+  .hmodal__box{max-width:none;max-height:100%;height:100%;border-radius:0}
+  .hmodal__body{padding:6px 18px 22px}
+  .hmodal__head{padding:20px 18px}
+  .hotel{gap:10px}
+  .hotel__price b{font-size:17px}
+}
+
 /* ============ VISA TABLE ============ */
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04)}
 table{width:100%;border-collapse:collapse;min-width:760px;font-size:15.5px}
@@ -446,7 +486,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
   <div class="container">
     <div class="section__head reveal">
       <span class="kicker">Обирай свою країну</span>
-      <h2>П’ять зим на вибір — від <span class="temp temp--cold"><svg viewBox="0 0 12 24" aria-hidden="true"><path d="M6 1.2c-1.5 0-2.7 1.2-2.7 2.7v9.4a4.6 4.6 0 1 0 5.4 0V3.9c0-1.5-1.2-2.7-2.7-2.7Zm0 1.6c.6 0 1.1.5 1.1 1.1v10.2l.5.3a3 3 0 1 1-3.2 0l.5-.3V3.9c0-.6.5-1.1 1.1-1.1Z"/><rect x="5.1" y="6.4" width="1.8" height="11" rx=".9"/><circle cx="6" cy="18.6" r="2.4"/></svg>−2&nbsp;°C</span> на трасах Банско до <span class="temp temp--warm"><svg viewBox="0 0 12 24" aria-hidden="true"><path d="M6 1.2c-1.5 0-2.7 1.2-2.7 2.7v9.4a4.6 4.6 0 1 0 5.4 0V3.9c0-1.5-1.2-2.7-2.7-2.7Zm0 1.6c.6 0 1.1.5 1.1 1.1v10.2l.5.3a3 3 0 1 1-3.2 0l.5-.3V3.9c0-.6.5-1.1 1.1-1.1Z"/><rect x="5.1" y="6.4" width="1.8" height="11" rx=".9"/><circle cx="6" cy="18.6" r="2.4"/></svg>+32&nbsp;°C</span> на Пхукеті</h2>
+      <h2>П’ять зим на вибір — від <span class="temp temp--cold"><svg viewBox="0 0 12 24" aria-hidden="true"><path d="M6 1.2c-1.5 0-2.7 1.2-2.7 2.7v9.4a4.6 4.6 0 1 0 5.4 0V3.9c0-1.5-1.2-2.7-2.7-2.7Zm0 1.6c.6 0 1.1.5 1.1 1.1v10.2l.5.3a3 3 0 1 1-3.2 0l.5-.3V3.9c0-.6.5-1.1 1.1-1.1Z"/><rect x="5.1" y="6.4" width="1.8" height="11" rx=".9"/><circle cx="6" cy="18.6" r="2.4"/></svg>+5&nbsp;°C</span> на болгарському узбережжі до <span class="temp temp--warm"><svg viewBox="0 0 12 24" aria-hidden="true"><path d="M6 1.2c-1.5 0-2.7 1.2-2.7 2.7v9.4a4.6 4.6 0 1 0 5.4 0V3.9c0-1.5-1.2-2.7-2.7-2.7Zm0 1.6c.6 0 1.1.5 1.1 1.1v10.2l.5.3a3 3 0 1 1-3.2 0l.5-.3V3.9c0-.6.5-1.1 1.1-1.1Z"/><rect x="5.1" y="6.4" width="1.8" height="11" rx=".9"/><circle cx="6" cy="18.6" r="2.4"/></svg>+32&nbsp;°C</span> на Пхукеті</h2>
       <p>Температури — усереднені денні показники для грудня–лютого. Візові умови подані окремо для кожної країни й зведені в таблицю нижче.</p>
     </div>
 
@@ -471,6 +511,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Розвинена українська інфраструктура в Аланії: школи, лікарі, магазини</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Не потрібна: до 90 днів протягом 180. Закордонний паспорт має бути дійсний ще 6 місяців на момент в’їзду; за даними МЗС доступний в’їзд і за ID-карткою.</div>
+          <button class="btn btn--dark country__more" data-hotels="tr" type="button">Рекомендовані готелі</button>
         </div>
       </article>
 
@@ -493,6 +534,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Довгі заїзди на 21–28 ночей у готелях коштують суттєво дешевше за подобову ціну</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Потрібна. Ставиться в аеропорту після прильоту — з 1 березня 2026 туристична віза коштує 30 USD. Паспорт має бути дійсний щонайменше 6 місяців і мати вільну сторінку.</div>
+          <button class="btn btn--dark country__more" data-hotels="eg" type="button">Рекомендовані готелі</button>
         </div>
       </article>
 
@@ -515,6 +557,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Найдешевша довга оренда серед далеких напрямків — місяць на Пхукеті часто дешевший за тиждень у Європі</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Не потрібна, але правила змінюються. Зараз діє безвіз на 60 днів; уряд уже схвалив повернення до 30 днів — воно запрацює через 15 днів після публікації в Royal Gazette. Обов’язкова онлайн-картка TDAC за 24–72 години до прильоту.</div>
+          <button class="btn btn--dark country__more" data-hotels="th" type="button">Рекомендовані готелі</button>
         </div>
       </article>
 
@@ -537,6 +580,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Материк дешевший: Малага й Аліканте — +16…+18 і порожні пляжі</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Безвіз для біометричного паспорта: 90 днів на кожні 180. Потрібні страховка, бронь житла, зворотний квиток і підтвердження коштів.</div>
+          <button class="btn btn--dark country__more" data-hotels="es" type="button">Рекомендовані готелі</button>
         </div>
       </article>
 
@@ -545,20 +589,22 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
         <div class="country__top">
           <div class="country__flag"><svg class="flag flag--lg" aria-hidden="true"><use href="#f-bg"/></svg></div>
           <h3>Болгарія</h3>
-          <span>Банско · Боровець · Пампорово · Велінград</span>
+          <span>Варна · Бургас · Несебр · Созополь</span>
         </div>
         <div class="country__body">
           <div class="meteo">
-            <div><b>−2…+5</b><span>у горах, °C</span></div>
-            <div><b>120+</b><span>днів снігу</span></div>
+            <div><b>+5…+8</b><span>вдень, °C</span></div>
+            <div><b>+6…+9</b><span>море, °C</span></div>
             <div><b>Шенген</b><span>без візи</span></div>
           </div>
           <ul>
-            <li>Для тих, хто хоче зиму, але свою: лижі за цінами вдвічі нижчими за Альпи</li>
-            <li>Банско — найдовший сезон і найбільший вибір апартаментів для довгого проживання</li>
-            <li>Термальні курорти Велінграда — варіант «SPA-зимівлі» без гірських лиж</li>
+            <li>Найм’якша зима в країні: біля моря температура рідко опускається нижче нуля, тоді як у горах −5…−10</li>
+            <li>Курортні містечка взимку порожні — довга оренда біля моря коштує в рази менше за літню</li>
+            <li>Мінеральні джерела Помор’я та Святих Костянтина й Олени працюють цілий рік</li>
+            <li>Захотілося снігу — Банско й Боровець за кілька годин дороги, можна з’їздити на вихідні</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Не потрібна: Болгарія — повноцінний член Шенгену, діє правило 90/180 для біометричного паспорта.</div>
+          <button class="btn btn--dark country__more" data-hotels="bg" type="button">Рекомендовані готелі</button>
         </div>
       </article>
 
@@ -630,19 +676,19 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
       <article class="cost reveal">
         <div class="cost__head">
           <svg class="flag" aria-hidden="true" style="width:34px;height:23px"><use href="#f-bg"/></svg>
-          <div><b>Болгарія</b><span>Банско</span></div>
+          <div><b>Болгарія</b><span>Варна · Бургас</span></div>
         </div>
-        <div class="costrow"><div class="costrow__ico">🛒</div><div><b>Супермаркет</b><p>Продукти помітно дешевші за середньоєвропейські, узимку працюють усі магазини.</p></div></div>
+        <div class="costrow"><div class="costrow__ico">🛒</div><div><b>Супермаркет</b><p>Продукти помітно дешевші за середньоєвропейські, великі мережі працюють цілий рік.</p></div></div>
         <div class="costrow"><div class="costrow__ico">🍽</div><div><b>Заклади</b><p>Вечеря на двох у закладі середнього рівня — €33, з напоєм €15–20 на особу.</p></div></div>
-        <div class="costrow"><div class="costrow__ico">🚌</div><div><b>Транспорт</b><p>Квиток в один бік — €0,77, місячний проїзний €26. Містечко цілком пішохідне.</p></div></div>
-        <div class="costrow"><div class="costrow__ico">🚕</div><div><b>Таксі</b><p>Посадка ≈€1,30, кілометр ≈€0,66 — таксі потрібне хіба до термальних джерел.</p></div></div>
-        <div class="cost__sum"><span>Без житла, на місяць</span>≈€350–450 на людину, лижі та скіпас окремо</div>
+        <div class="costrow"><div class="costrow__ico">🚌</div><div><b>Транспорт</b><p>Квиток у міському транспорті — близько €0,80, місячний проїзний €26.</p></div></div>
+        <div class="costrow"><div class="costrow__ico">🚕</div><div><b>Таксі</b><p>Посадка ≈€1,30, кілометр ≈€0,66 — одне з найдешевших таксі в ЄС.</p></div></div>
+        <div class="cost__sum"><span>Без житла, на місяць</span>≈€350–450 на людину: їжа, комуналка, транспорт, кафе</div>
       </article>
 
     </div>
 
     <div class="note reveal">
-      <b>Що врахувати.</b> Це орієнтири станом на серпень 2026, зібрані з відкритих оглядів вартості життя, а не наші тарифи. Підсумки включають їжу, комунальні платежі, місцевий транспорт і регулярні виходи в кафе, але не оренду житла. Наприклад, у Хургаді самі лише продукти — €150–250, комуналка ще €30–50, і без цих статей бюджет виглядає оманливо низьким. Реальна сума залежить від району, сезону й курсу валют: у туристичних зонах ціни вищі за місцеві райони на 30–100%. Окремо додайте лижні витрати в Банско — скіпас там коштує €45 за день, €85 за два, прокат спорядження €12–20 на день. Усі суми переведено в євро для зручності порівняння — на місці ви платитимете в місцевій валюті: орієнтовно €1 ≈ 57 єгипетських фунтів ≈ 37 тайських батів. Курси плавають, тому перед поїздкою перевіряйте актуальний. У Болгарії з 1 січня 2026 діє євро: лев обмінювався за фіксованим курсом 1,95583 за €1 і з лютого вийшов з обігу, тож жодного обміну там уже не потрібно.
+      <b>Що врахувати.</b> Це орієнтири станом на серпень 2026, зібрані з відкритих оглядів вартості життя, а не наші тарифи. Підсумки включають їжу, комунальні платежі, місцевий транспорт і регулярні виходи в кафе, але не оренду житла. Наприклад, у Хургаді самі лише продукти — €150–250, комуналка ще €30–50, і без цих статей бюджет виглядає оманливо низьким. Реальна сума залежить від району, сезону й курсу валют: у туристичних зонах ціни вищі за місцеві райони на 30–100%. Якщо плануєте вилазку в гори з болгарського узбережжя, додайте лижні витрати окремо: скіпас у Банско — €45 за день, €85 за два, прокат спорядження €12–20 на день. Усі суми переведено в євро для зручності порівняння — на місці ви платитимете в місцевій валюті: орієнтовно €1 ≈ 57 єгипетських фунтів ≈ 37 тайських батів. Курси плавають, тому перед поїздкою перевіряйте актуальний. У Болгарії з 1 січня 2026 діє євро: лев обмінювався за фіксованим курсом 1,95583 за €1 і з лютого вийшов з обігу, тож жодного обміну там уже не потрібно.
     </div>
   </div>
 </section>
@@ -786,6 +832,20 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
   </div>
 </footer>
 
+<!-- ================= HOTELS MODAL ================= -->
+<div class="hmodal" id="hmodal" role="dialog" aria-modal="true" aria-labelledby="hmodalTitle">
+  <div class="hmodal__bg" data-close></div>
+  <div class="hmodal__box">
+    <div class="hmodal__head" id="hmodalHead">
+      <svg class="flag flag--lg" aria-hidden="true" id="hmodalFlag" style="width:48px;height:32px"><use href="#f-tr" id="hmodalUse"/></svg>
+      <div><h3 id="hmodalTitle">Країна</h3><span id="hmodalSub">Рекомендовані готелі</span></div>
+      <button class="hmodal__close" type="button" data-close aria-label="Закрити">×</button>
+    </div>
+    <div class="hmodal__body" id="hmodalBody"></div>
+    <div class="hmodal__foot">Ціни вказані «від», за особу при двомісному розміщенні, і залежать від дат заїзду та наявності місць.</div>
+  </div>
+</div>
+
 <script>
 /* ============ HERO: сніг → море та сонце ============ */
 (function(){
@@ -910,6 +970,154 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
   requestAnimationFrame(frame);
 })();
 
+
+/* ============================================================
+   ГОТЕЛІ — ДЕМО-ДАНІ
+   Щоб підставити свій список, змініть тільки об’єкт HOTELS нижче.
+   Поля готелю:
+     name   — назва
+     city   — курорт або район
+     stars  — кількість зірок (число)
+     meal   — тип харчування: RO, BB, HB, FB, AI, UAI
+     from   — ціна «від» у євро за особу
+     nights — за скільки ночей вказана ціна
+     note   — короткий коментар (необов’язково)
+   Сегменти можна називати як завгодно, порядок збережеться.
+   ============================================================ */
+const HOTELS = {
+  tr: { title:'Туреччина', flag:'f-tr', sub:'Аланія · Анталія · Сіде',
+    segments:[
+      {name:'Економ', items:[
+        {name:'Demo Beach Hotel', city:'Аланія', stars:3, meal:'AI', from:290, nights:7, note:'200 м до пляжу'},
+        {name:'Demo City Suites', city:'Анталія', stars:3, meal:'BB', from:250, nights:7}
+      ]},
+      {name:'Комфорт', items:[
+        {name:'Demo Resort & Spa', city:'Сіде', stars:4, meal:'AI', from:430, nights:7, note:'власний пляж, аквапарк'},
+        {name:'Demo Garden Hotel', city:'Аланія', stars:4, meal:'AI', from:390, nights:7}
+      ]},
+      {name:'Преміум', items:[
+        {name:'Demo Palace Deluxe', city:'Белек', stars:5, meal:'UAI', from:780, nights:7, note:'a la carte без доплат'}
+      ]}
+    ]},
+  eg: { title:'Єгипет', flag:'f-eg', sub:'Хургада · Шарм-ель-Шейх · Марса-Алам',
+    segments:[
+      {name:'Економ', items:[
+        {name:'Demo Sea View', city:'Хургада', stars:3, meal:'AI', from:310, nights:7},
+        {name:'Demo Bay Resort', city:'Шарм-ель-Шейх', stars:3, meal:'AI', from:330, nights:7}
+      ]},
+      {name:'Комфорт', items:[
+        {name:'Demo Reef Resort', city:'Марса-Алам', stars:4, meal:'AI', from:520, nights:7, note:'домашній риф біля берега'},
+        {name:'Demo Aqua Park', city:'Хургада', stars:4, meal:'AI', from:480, nights:7}
+      ]},
+      {name:'Преміум', items:[
+        {name:'Demo Grand Lagoon', city:'Шарм-ель-Шейх', stars:5, meal:'UAI', from:820, nights:7}
+      ]}
+    ]},
+  th: { title:'Таїланд', flag:'f-th', sub:'Пхукет · Крабі · Самуї',
+    segments:[
+      {name:'Економ', items:[
+        {name:'Demo Patong Inn', city:'Пхукет', stars:3, meal:'BB', from:620, nights:10}
+      ]},
+      {name:'Комфорт', items:[
+        {name:'Demo Beachfront Resort', city:'Крабі', stars:4, meal:'BB', from:940, nights:10, note:'перша лінія'},
+        {name:'Demo Island Villas', city:'Самуї', stars:4, meal:'HB', from:1010, nights:10}
+      ]},
+      {name:'Преміум', items:[
+        {name:'Demo Bay Luxury', city:'Пхукет', stars:5, meal:'BB', from:1560, nights:10, note:'вілли з басейном'}
+      ]}
+    ]},
+  es: { title:'Іспанія', flag:'f-es', sub:'Тенерифе · Гран-Канарія · Коста-дель-Соль',
+    segments:[
+      {name:'Економ', items:[
+        {name:'Demo Apartments', city:'Тенерифе', stars:3, meal:'RO', from:390, nights:7, note:'кухня в номері'}
+      ]},
+      {name:'Комфорт', items:[
+        {name:'Demo Playa Hotel', city:'Гран-Канарія', stars:4, meal:'HB', from:680, nights:7},
+        {name:'Demo Costa Resort', city:'Малага', stars:4, meal:'BB', from:610, nights:7}
+      ]},
+      {name:'Преміум', items:[
+        {name:'Demo Ocean Grand', city:'Тенерифе', stars:5, meal:'HB', from:1150, nights:7}
+      ]}
+    ]},
+  bg: { title:'Болгарія', flag:'f-bg', sub:'Варна · Бургас · Несебр · Созополь',
+    segments:[
+      {name:'Економ', items:[
+        {name:'Demo Sea Apartments', city:'Варна', stars:3, meal:'RO', from:210, nights:7, note:'довга оренда — за запитом'}
+      ]},
+      {name:'Комфорт', items:[
+        {name:'Demo Spa Hotel', city:'Помор’є', stars:4, meal:'HB', from:340, nights:7, note:'мінеральний басейн'},
+        {name:'Demo Old Town', city:'Несебр', stars:4, meal:'BB', from:320, nights:7}
+      ]},
+      {name:'Преміум', items:[
+        {name:'Demo Marine Grand', city:'Бургас', stars:5, meal:'HB', from:560, nights:7}
+      ]}
+    ]}
+};
+
+const MEALS = {RO:'без харчування', BB:'сніданки', HB:'напівпансіон', FB:'повний пансіон', AI:'все включено', UAI:'ультра все включено'};
+const HEAD_BG = {tr:'linear-gradient(120deg,#8E0021,#FF0138)', eg:'linear-gradient(120deg,#7A3B00,#FF8000)',
+  th:'linear-gradient(120deg,#2D2A4A,#A51931)', es:'linear-gradient(120deg,#B01126,#FF4C00)', bg:'linear-gradient(120deg,#0E4D3C,#3FA37F)'};
+
+(function(){
+  const modal = document.getElementById('hmodal');
+  if(!modal) return;                      // вікна немає в розмітці — виходимо без помилки
+  const body  = document.getElementById('hmodalBody');
+  const head  = document.getElementById('hmodalHead');
+  const title = document.getElementById('hmodalTitle');
+  const sub   = document.getElementById('hmodalSub');
+  const use   = document.getElementById('hmodalUse');
+  let lastFocus = null;
+
+  function render(code){
+    const d = HOTELS[code];
+    if(!d) return;
+    title.textContent = d.title;
+    sub.textContent = d.sub;
+    use.setAttribute('href', '#' + d.flag);
+    head.style.background = HEAD_BG[code] || 'var(--ink)';
+
+    let html = '<div class="hdemo"><b>Демо-дані.</b> Готелі та ціни нижче — заглушка для верстки. Замініть об’єкт HOTELS у коді сторінки на реальний список.</div>';
+    d.segments.forEach(function(seg){
+      html += '<div class="hseg"><div class="hseg__title">' + seg.name + '</div>';
+      seg.items.forEach(function(h){
+        html += '<div class="hotel">' +
+          '<div class="hotel__main">' +
+            '<p class="hotel__name">' + h.name + ' ' + '★'.repeat(h.stars) + '</p>' +
+            '<p class="hotel__meta">' + h.city + (h.note ? ' · ' + h.note : '') + '</p>' +
+            '<div class="hotel__tags">' +
+              '<span class="htag htag--meal">' + h.meal + ' — ' + (MEALS[h.meal] || '') + '</span>' +
+              '<span class="htag">' + h.nights + ' ночей</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="hotel__price"><b>від €' + h.from + '</b><span>за особу</span></div>' +
+        '</div>';
+      });
+      html += '</div>';
+    });
+    body.innerHTML = html;
+  }
+
+  function open(code){
+    lastFocus = document.activeElement;
+    render(code);
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    body.scrollTop = 0;
+    modal.querySelector('.hmodal__close').focus();
+  }
+  function close(){
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    if(lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-hotels]').forEach(function(btn){
+    btn.addEventListener('click', function(){ open(btn.getAttribute('data-hotels')); });
+  });
+  modal.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+})();
+
 /* ============ Поява блоків при скролі ============ */
 (function(){
   const items = document.querySelectorAll('.reveal');
@@ -928,5 +1136,6 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
   items.forEach(el => io.observe(el));
 })();
 </script>
+
 </body>
 </html>
