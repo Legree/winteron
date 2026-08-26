@@ -76,12 +76,22 @@ p{margin:0 0 1em}
 .nav a{text-decoration:none;color:rgba(255,255,255,.86);padding:4px 0;border-bottom:2px solid transparent}
 .nav a:hover{border-color:var(--amber);color:var(--amber)}
 .navbar .btn{padding:11px 20px;font-size:15px}
+.burger{display:none;width:42px;height:42px;flex:none;border:0;background:rgba(255,255,255,.1);
+  border-radius:11px;cursor:pointer;padding:0;place-items:center;gap:4px;flex-direction:column}
+.burger span{display:block;width:18px;height:2px;background:#fff;border-radius:2px;transition:.22s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobnav{display:none;flex-direction:column;border-top:1px solid rgba(255,255,255,.12);padding:6px 0 12px}
+.mobnav a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:700;font-size:16px;padding:13px 20px;
+  border-bottom:1px solid rgba(255,255,255,.07)}
+.mobnav a:last-child{border-bottom:0}
+.mobnav a:active{background:rgba(255,255,255,.08)}
 @media(max-width:900px){
-  .navbar__row{gap:14px}
-  .nav{gap:20px;font-size:14.5px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
-       mask-image:linear-gradient(90deg,#000 88%,transparent)}
-  .nav::-webkit-scrollbar{display:none}
-  .nav a{white-space:nowrap}
+  .navbar__row{gap:12px}
+  .nav{display:none}
+  .burger{display:flex}
+  .mobnav:not([hidden]){display:flex}
 }
 @media(max-width:640px){.logo img{height:26px}}
 
@@ -117,6 +127,8 @@ p{margin:0 0 1em}
   padding:8px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);margin-bottom:22px
 }
 .eyebrow b{color:var(--amber)}
+.h1sub{display:block;white-space:normal;font-size:clamp(15px,1.8vw,20px);font-weight:700;letter-spacing:0;
+  color:rgba(255,255,255,.82);margin-top:14px;text-shadow:none;max-width:34ch}
 .hero h1{max-width:none;white-space:nowrap;text-shadow:0 8px 40px rgba(0,0,0,.35)}
 .hero h1 em{font-style:normal;background:linear-gradient(95deg,#FFC46B,var(--amber) 40%,var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero__lead{max-width:56ch;font-size:clamp(17px,2vw,20px);color:rgba(255,255,255,.88);margin-bottom:30px}
@@ -179,10 +191,19 @@ p{margin:0 0 1em}
 .compare td:nth-child(2),.compare td:nth-child(3){white-space:nowrap;font-weight:700}
 .compare .cvisa{font-size:13.5px;color:var(--muted)}
 @media(max-width:640px){
-  .compare{font-size:13px}
-  .compare th,.compare td{padding:10px 8px}
-  .compare .cname svg{margin-right:5px;width:1.3em;height:.87em}
-  .compare thead th:nth-child(4),.compare td:nth-child(4){display:none}
+  .compare{display:block;border:0;box-shadow:none;background:none;margin-bottom:24px}
+  .compare thead{display:none}
+  .compare tbody,.compare tr,.compare td{display:block;width:100%}
+  .compare tbody tr{background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:6px 16px 10px;margin-bottom:12px;box-shadow:0 4px 14px rgba(23,23,23,.05)}
+  .compare td{border-bottom:1px solid var(--line);padding:9px 0;display:flex;
+    justify-content:space-between;align-items:center;gap:12px;font-size:14.5px}
+  .compare tr td:last-child{border-bottom:0}
+  .compare td::before{content:attr(data-l);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--muted);font-weight:900}
+  .compare td.cname{font-size:18px;padding-top:12px}
+  .compare td.cname::before{display:none}
+  .compare td.cvisa{color:var(--ink);font-weight:700}
 }
 
 /* ============ COUNTRY CARDS ============ */
@@ -232,6 +253,16 @@ p{margin:0 0 1em}
 .cost__ai b{display:block;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--coral);font-weight:900;margin-bottom:3px}
 .note{margin-top:26px;padding:20px 22px;border-radius:var(--radius);background:#fff;border:1px solid var(--line);font-size:15px;color:var(--muted)}
 .note b{color:var(--ink)}
+
+/* ============ COST TABS ============ */
+.ctabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.ctab{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;cursor:pointer;
+  border:1px solid var(--line);background:#fff;font:inherit;font-weight:800;font-size:15px;color:var(--ink);transition:.18s}
+.ctab:hover{border-color:var(--coral);color:var(--coral)}
+.ctab.is-on{background:linear-gradient(100deg,var(--red),var(--coral) 60%,var(--amber));color:#fff;border-color:transparent;
+  box-shadow:0 10px 22px rgba(255,76,0,.28)}
+.cost[hidden]{display:none}
+@media(max-width:640px){.ctabs{gap:6px}.ctab{padding:9px 13px;font-size:14px}}
 
 /* ============ HOTELS MODAL ============ */
 .country__more{margin-top:14px;width:100%;justify-content:center;padding:13px 20px;font-size:15px}
@@ -286,6 +317,11 @@ td strong{font-weight:800}
 .tag{display:inline-block;padding:4px 11px;border-radius:99px;font-size:12.5px;font-weight:800;white-space:nowrap}
 .tag--free{background:rgba(63,163,127,.22);color:#7EE0BA}
 .tag--visa{background:rgba(255,128,0,.2);color:#FFC46B}
+.vmore{border:0;padding:0;margin-top:8px}
+.vmore summary{font-size:13.5px;padding:0;color:var(--amber);font-weight:800;list-style:none;display:inline-block}
+.vmore summary::after{content:" →";position:static;font-size:13.5px;color:var(--amber);transition:transform .2s}
+.vmore[open] summary::after{content:" ↓"}
+.vmore p{margin:8px 0 0;padding:0;font-size:14.5px;color:rgba(255,255,255,.76)}
 .callout{margin-top:24px;display:flex;gap:16px;align-items:flex-start;padding:22px;border-radius:var(--radius);background:linear-gradient(120deg,rgba(255,1,56,.16),rgba(255,128,0,.14));border:1px solid rgba(255,255,255,.14)}
 .callout span{font-size:26px;line-height:1}
 .callout p{margin:0;font-size:15.5px;color:rgba(255,255,255,.86)}
@@ -432,14 +468,25 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
       </a>
       <nav class="nav">
         <a href="#why">Навіщо</a>
+        <a href="#formats">Формати</a>
         <a href="#countries">Країни</a>
         <a href="#costs">Бюджет</a>
         <a href="#visa">Візи</a>
-        <a href="#formats">Формати</a>
         <a href="#faq">Питання</a>
       </nav>
       <a class="btn btn--primary navbar__cta" href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Підібрати тур</a>
+      <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="mobnav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <nav class="mobnav" id="mobnav" hidden>
+      <a href="#why">Навіщо</a>
+      <a href="#formats">Формати</a>
+      <a href="#countries">Країни</a>
+      <a href="#costs">Бюджет</a>
+      <a href="#visa">Візи</a>
+      <a href="#faq">Питання</a>
+    </nav>
   </div>
 </header>
 
@@ -469,10 +516,10 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
 
   <div class="container hero__inner">
     <span class="eyebrow">Сезон зимівлі <b>2026/27</b> · грудень — березень</span>
-    <h1>Обери <em>свою зиму</em></h1>
-    <p class="hero__lead">Туреччина, Єгипет, Таїланд, Іспанія, Болгарія — п’ять сценаріїв на грудень–березень. Тиждень на перезавантаження, місяць біля моря або всі 90 днів безвізу. Візи, переліт, житло та страхування — беремо на себе.</p>
+    <h1>Обери <em>свою зиму</em><span class="h1sub">Туреччина · Єгипет · Таїланд · Іспанія · Болгарія — сезон 2026/27</span></h1>
+    <p class="hero__lead">П’ять сценаріїв на грудень–березень: тиждень на перезавантаження, місяць біля моря або всі 90 днів безвізу. Візи, переліт, житло та страхування — беремо на себе.</p>
     <div class="hero__cta">
-      <a class="btn btn--primary" href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Підібрати тур у системі</a>
+      <a class="btn btn--primary" href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Підібрати тур</a>
       <a class="btn btn--ghost" href="#countries">Порівняти 5 країн</a>
     </div>
     <div class="hero__flags">
@@ -570,13 +617,13 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
     </div>
 
     <table class="compare reveal">
-      <thead><tr><th>Країна</th><th>Вдень, °C</th><th>Бюджет/міс</th><th>Віза</th></tr></thead>
+      <thead><tr><th>Країна</th><th>Вдень, °C</th><th>Море, °C</th><th>Бюджет/міс</th><th>Віза</th></tr></thead>
       <tbody>
-        <tr onclick="location.hash='#tr'"><td class="cname"><svg class="flag" aria-hidden="true"><use href="#f-tr"/></svg>Туреччина</td><td>+15…+18</td><td>€400–600</td><td class="cvisa">Безвіз, 90 днів</td></tr>
-        <tr onclick="location.hash='#eg'"><td class="cname"><svg class="flag" aria-hidden="true"><use href="#f-eg"/></svg>Єгипет</td><td>+22…+25</td><td>€300–600</td><td class="cvisa">Віза €26 у аеропорту</td></tr>
-        <tr onclick="location.hash='#th'"><td class="cname"><svg class="flag" aria-hidden="true"><use href="#f-th"/></svg>Таїланд</td><td>+31…+33</td><td>€300–450</td><td class="cvisa">Безвіз, 60 днів</td></tr>
-        <tr onclick="location.hash='#es'"><td class="cname"><svg class="flag" aria-hidden="true"><use href="#f-es"/></svg>Іспанія</td><td>+21…+24</td><td>€350–550</td><td class="cvisa">Безвіз, Шенген</td></tr>
-        <tr onclick="location.hash='#bg'"><td class="cname"><svg class="flag" aria-hidden="true"><use href="#f-bg"/></svg>Болгарія</td><td>+5…+8</td><td>€350–450</td><td class="cvisa">Безвіз, Шенген</td></tr>
+        <tr onclick="location.hash='#tr'"><td class="cname" data-l="Країна"><svg class="flag" aria-hidden="true"><use href="#f-tr"/></svg>Туреччина</td><td data-l="Вдень, °C">+15…+18</td><td data-l="Море, °C">+17</td><td data-l="Бюджет/міс">€400–600</td><td class="cvisa" data-l="Віза">Безвіз, 90 днів</td></tr>
+        <tr onclick="location.hash='#eg'"><td class="cname" data-l="Країна"><svg class="flag" aria-hidden="true"><use href="#f-eg"/></svg>Єгипет</td><td data-l="Вдень, °C">+22…+25</td><td data-l="Море, °C">+21…+23</td><td data-l="Бюджет/міс">€300–600</td><td class="cvisa" data-l="Віза">Віза $30</td></tr>
+        <tr onclick="location.hash='#th'"><td class="cname" data-l="Країна"><svg class="flag" aria-hidden="true"><use href="#f-th"/></svg>Таїланд</td><td data-l="Вдень, °C">+31…+33</td><td data-l="Море, °C">+28</td><td data-l="Бюджет/міс">€300–450</td><td class="cvisa" data-l="Віза">Безвіз, 60 днів</td></tr>
+        <tr onclick="location.hash='#es'"><td class="cname" data-l="Країна"><svg class="flag" aria-hidden="true"><use href="#f-es"/></svg>Іспанія</td><td data-l="Вдень, °C">+21…+24</td><td data-l="Море, °C">+20</td><td data-l="Бюджет/міс">€350–550</td><td class="cvisa" data-l="Віза">Безвіз, Шенген</td></tr>
+        <tr onclick="location.hash='#bg'"><td class="cname" data-l="Країна"><svg class="flag" aria-hidden="true"><use href="#f-bg"/></svg>Болгарія</td><td data-l="Вдень, °C">+5…+8</td><td data-l="Море, °C">+6…+9</td><td data-l="Бюджет/міс">€350–450</td><td class="cvisa" data-l="Віза">Безвіз, Шенген</td></tr>
       </tbody>
     </table>
 
@@ -590,11 +637,6 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
           <span>Аланія · Анталія · Сіде · Стамбул</span>
         </div>
         <div class="country__body">
-          <div class="meteo">
-            <div><b>+15…+18</b><span>вдень, °C</span></div>
-            <div><b>+17</b><span>море, °C</span></div>
-            <div><b>90 днів</b><span>без візи</span></div>
-          </div>
           <ul>
             <li>Найпопулярніший формат довгої зимівлі: оренда на місяць дешевша за тиждень «все включено»</li>
             <li>Сезон цитрусових, гори за 40 хвилин від моря, термальні джерела Памуккале</li>
@@ -613,17 +655,12 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
           <span>Хургада · Шарм-ель-Шейх · Марса-Алам</span>
         </div>
         <div class="country__body">
-          <div class="meteo">
-            <div><b>+22…+25</b><span>вдень, °C</span></div>
-            <div><b>+21…+23</b><span>море, °C</span></div>
-            <div><b>30 USD</b><span>віза</span></div>
-          </div>
           <ul>
             <li>Найтепліше море серед близьких напрямків — дайвінг і сноркелінг цілий рік</li>
             <li>«Все включено» робить бюджет передбачуваним: харчування вже в ціні</li>
             <li>Довгі заїзди на 21–28 ночей у готелях коштують суттєво дешевше за подобову ціну</li>
           </ul>
-          <div class="visa-note"><b>Віза</b> Потрібна. Ставиться в аеропорту після прильоту — з 1 березня 2026 туристична віза коштує 30 USD. Паспорт має бути дійсний щонайменше 6 місяців і мати вільну сторінку.</div>
+          <div class="visa-note"><b>Віза</b> Потрібна. Ставиться в аеропорту після прильоту — з 1 березня 2026 туристична віза коштує $30. Паспорт має бути дійсний щонайменше 6 місяців і мати вільну сторінку.</div>
           <button class="btn btn--dark country__more" data-hotels="eg" type="button">Рекомендовані готелі</button>
         </div>
       </article>
@@ -636,11 +673,6 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
           <span>Пхукет · Крабі · Самуї · Бангкок</span>
         </div>
         <div class="country__body">
-          <div class="meteo">
-            <div><b>+31…+33</b><span>вдень, °C</span></div>
-            <div><b>+28</b><span>море, °C</span></div>
-            <div><b>60 днів</b><span>без візи</span></div>
-          </div>
           <ul>
             <li>Наша зима — тутешній пік сезону: мінімум дощів, спокійне море, ясне небо</li>
             <li>Єдиний напрямок зі справжнім літом: +30 і купання без знижки на «зимове море»</li>
@@ -659,11 +691,6 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
           <span>Тенерифе · Гран-Канарія · Коста-дель-Соль</span>
         </div>
         <div class="country__body">
-          <div class="meteo">
-            <div><b>+21…+24</b><span>вдень, °C</span></div>
-            <div><b>+20</b><span>море, °C</span></div>
-            <div><b>Шенген</b><span>без візи</span></div>
-          </div>
           <ul>
             <li>Канари — єдина «вічна весна» Європи: купальний сезон не закривається взагалі</li>
             <li>Довга оренда апартаментів, коворкінги, українська спільнота на Тенерифе</li>
@@ -682,11 +709,6 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
           <span>Варна · Бургас · Несебр · Созополь</span>
         </div>
         <div class="country__body">
-          <div class="meteo">
-            <div><b>+5…+8</b><span>вдень, °C</span></div>
-            <div><b>+6…+9</b><span>море, °C</span></div>
-            <div><b>Шенген</b><span>без візи</span></div>
-          </div>
           <ul>
             <li>Найм’якша зима в країні: біля моря температура рідко опускається нижче нуля, тоді як у горах −5…−10</li>
             <li>Курортні містечка взимку порожні — довга оренда біля моря коштує в рази менше за літню</li>
@@ -711,9 +733,17 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
       <p>Найчастіше питання перед довгою поїздкою. Зібрали орієнтири по їжі та транспорту — щоб ви могли порахувати свій місяць ще до бронювання. Цифри нижче — для варіанта з орендою житла та власною кухнею; у Туреччині та Єгипті більшість турів ідуть із «все включено», і тоді харчування з бюджету зникає.</p>
     </div>
 
+    <div class="ctabs reveal" role="tablist" aria-label="Вибір країни">
+      <button class="ctab is-on" role="tab" data-c="tr" aria-selected="true"><svg class="flag" aria-hidden="true"><use href="#f-tr"/></svg>Туреччина</button>
+      <button class="ctab" role="tab" data-c="eg" aria-selected="false"><svg class="flag" aria-hidden="true"><use href="#f-eg"/></svg>Єгипет</button>
+      <button class="ctab" role="tab" data-c="th" aria-selected="false"><svg class="flag" aria-hidden="true"><use href="#f-th"/></svg>Таїланд</button>
+      <button class="ctab" role="tab" data-c="es" aria-selected="false"><svg class="flag" aria-hidden="true"><use href="#f-es"/></svg>Іспанія</button>
+      <button class="ctab" role="tab" data-c="bg" aria-selected="false"><svg class="flag" aria-hidden="true"><use href="#f-bg"/></svg>Болгарія</button>
+    </div>
+
     <div class="costs">
 
-      <article class="cost reveal">
+      <article class="cost reveal" data-cost="tr">
         <div class="cost__head">
           <svg class="flag" aria-hidden="true" style="width:34px;height:23px"><use href="#f-tr"/></svg>
           <div><b>Туреччина</b><span>Аланія</span></div>
@@ -726,7 +756,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
         <div class="cost__ai"><b>А якщо «все включено»</b>Харчування вже в ціні туру — з цього переліку лишаються тільки поїздки містом, кава поза готелем, екскурсії та дрібні покупки. Реально це €5–10 на день.</div>
       </article>
 
-      <article class="cost reveal">
+      <article class="cost reveal" data-cost="eg">
         <div class="cost__head">
           <svg class="flag" aria-hidden="true" style="width:34px;height:23px"><use href="#f-eg"/></svg>
           <div><b>Єгипет</b><span>Хургада</span></div>
@@ -739,7 +769,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
         <div class="cost__ai"><b>А якщо «все включено»</b>Сніданки, обіди, вечері та напої закриті пакетом. Витрати зводяться до трансферів, дайвінгу чи екскурсій і покупок — це найпередбачуваніший бюджет із п’яти напрямків.</div>
       </article>
 
-      <article class="cost reveal">
+      <article class="cost reveal" data-cost="th">
         <div class="cost__head">
           <svg class="flag" aria-hidden="true" style="width:34px;height:23px"><use href="#f-th"/></svg>
           <div><b>Таїланд</b><span>Пхукет</span></div>
@@ -751,7 +781,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
         <div class="cost__sum"><span>Без житла, на місяць</span>≈€300–450 на людину, з них €215–325 — харчування</div>
       </article>
 
-      <article class="cost reveal">
+      <article class="cost reveal" data-cost="es">
         <div class="cost__head">
           <svg class="flag" aria-hidden="true" style="width:34px;height:23px"><use href="#f-es"/></svg>
           <div><b>Іспанія</b><span>Тенерифе</span></div>
@@ -763,7 +793,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
         <div class="cost__sum"><span>Без житла, на місяць</span>≈€350–550 на людину, з них €200–350 — їжа й кафе</div>
       </article>
 
-      <article class="cost reveal">
+      <article class="cost reveal" data-cost="bg">
         <div class="cost__head">
           <svg class="flag" aria-hidden="true" style="width:34px;height:23px"><use href="#f-bg"/></svg>
           <div><b>Болгарія</b><span>Варна · Бургас</span></div>
@@ -804,31 +834,31 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <td data-l="Країна"><strong><svg class="flag" aria-hidden="true"><use href="#f-tr"/></svg> Туреччина</strong></td>
             <td data-l="Режим"><span class="tag tag--free">Безвіз</span></td>
             <td data-l="Строк">90 днів протягом кожних 180</td>
-            <td data-l="Умови">Паспорт дійсний щонайменше 6 місяців на момент в’їзду. За даними МЗС в’їзд можливий і за ID-карткою. Шенгенський ліміт не витрачається.</td>
+            <td data-l="Умови">Паспорт має бути дійсний ще 6 місяців.<details class="vmore"><summary>Детальніше</summary><p>За даними МЗС в’їзд можливий і за ID-карткою. Шенгенський ліміт при цьому не витрачається.</p></details></td>
           </tr>
           <tr>
             <td data-l="Країна"><strong><svg class="flag" aria-hidden="true"><use href="#f-eg"/></svg> Єгипет</strong></td>
             <td data-l="Режим"><span class="tag tag--visa">Потрібна віза</span></td>
             <td data-l="Строк">Віза після прильоту — до 30 днів</td>
-            <td data-l="Умови">Вартість — 30 USD з 1 березня 2026, оплата в аеропорту. Паспорт дійсний ≥ 6 місяців + одна вільна сторінка. Для Шарм-ель-Шейха діє безкоштовний штамп Sinai Only до 15 днів, але з правом пересування лише Синайським півостровом. Для довшого перебування візу оформлюють заздалегідь у посольстві на підставі турпакета.</td>
+            <td data-l="Умови">Оплата $30 в аеропорту після прильоту.<details class="vmore"><summary>Детальніше</summary><p>Паспорт дійсний ≥ 6 місяців і одна вільна сторінка. Для Шарм-ель-Шейха діє безкоштовний штамп Sinai Only до 15 днів, але з правом пересування лише Синайським півостровом. Для довшого перебування візу оформлюють заздалегідь у посольстві на підставі турпакета.</p></details></td>
           </tr>
           <tr>
             <td data-l="Країна"><strong><svg class="flag" aria-hidden="true"><use href="#f-th"/></svg> Таїланд</strong></td>
             <td data-l="Режим"><span class="tag tag--free">Безвіз</span></td>
             <td data-l="Строк">60 днів зараз → 30 днів після зміни правил</td>
-            <td data-l="Умови">19 травня 2026 уряд Таїланду схвалив скасування 60-денного безвізу для 93 країн, зокрема України, з поверненням до 30 днів. Зміна набирає чинності через 15 днів після публікації в Royal Gazette — станом на початок серпня 2026 публікації ще не було, тож поки діють 60 днів. Обов’язкова електронна картка TDAC, яку заповнюють за 24–72 години до прибуття. Потрібні паспорт із запасом 6 місяців, зворотний квиток, бронь житла та підтвердження коштів.</td>
+            <td data-l="Умови">Обов’язкова онлайн-картка TDAC за 24–72 години до прильоту.<details class="vmore"><summary>Детальніше</summary><p>19 травня 2026 уряд Таїланду схвалив скасування 60-денного безвізу для 93 країн, зокрема України, з поверненням до 30 днів. Зміна набирає чинності через 15 днів після публікації в Royal Gazette — станом на початок серпня 2026 публікації ще не було. Потрібні паспорт із запасом 6 місяців, зворотний квиток, бронь житла та підтвердження коштів.</p></details></td>
           </tr>
           <tr>
             <td data-l="Країна"><strong><svg class="flag" aria-hidden="true"><use href="#f-es"/></svg> Іспанія</strong></td>
             <td data-l="Режим"><span class="tag tag--free">Безвіз (Шенген)</span></td>
             <td data-l="Строк">90 днів протягом кожних 180</td>
-            <td data-l="Умови">Біометричний паспорт, медстраховка, бронь житла, зворотні квитки, підтвердження коштів. Безвіз — лише туризм: працювати, вчитися чи оселятися за ним не можна, для цього потрібна національна віза D.</td>
+            <td data-l="Умови">Біометричний паспорт, страховка, бронь житла, зворотні квитки.<details class="vmore"><summary>Детальніше</summary><p>Безвіз — лише туризм: працювати, вчитися чи оселятися за ним не можна, для цього потрібна національна віза типу D. Також знадобиться підтвердження достатніх коштів на поїздку.</p></details></td>
           </tr>
           <tr>
             <td data-l="Країна"><strong><svg class="flag" aria-hidden="true"><use href="#f-bg"/></svg> Болгарія</strong></td>
             <td data-l="Режим"><span class="tag tag--free">Безвіз (Шенген)</span></td>
             <td data-l="Строк">90 днів протягом кожних 180</td>
-            <td data-l="Умови">Ті самі шенгенські умови. Дні перебування додаються до загального ліміту 90/180 разом з Іспанією та іншими країнами зони.</td>
+            <td data-l="Умови">Ті самі шенгенські умови, що й для Іспанії.<details class="vmore"><summary>Детальніше</summary><p>Дні перебування додаються до загального ліміту 90/180 разом з Іспанією та іншими країнами зони.</p></details></td>
           </tr>
         </tbody>
       </table>
@@ -868,7 +898,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
       <span class="kicker">Для агентів</span>
       <h2>Готові бронювати зимівлю?</h2>
       <p>Усі напрямки з цієї сторінки — у системі бронювання Travelon: фільтри за датами, готелями, типом харчування й бюджетом, актуальна наявність місць і ціни в реальному часі.</p>
-      <a class="btn btn--primary btn--lg" href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Перейти до пошуку турів</a>
+      <a class="btn btn--primary btn--lg" href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Підібрати тур</a>
     </div>
   </div>
 </section>
@@ -889,11 +919,12 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
       </div>
       <div>
         <h4>Розділи</h4>
-        <p><a href="#countries">Країни для зимівлі</a></p>
-        <p><a href="#visa">Візові умови</a></p>
         <p><a href="#formats">Формати поїздок</a></p>
+        <p><a href="#countries">Країни для зимівлі</a></p>
+        <p><a href="#costs">Бюджет на місці</a></p>
+        <p><a href="#visa">Візові умови</a></p>
         <p><a href="#faq">Часті питання</a></p>
-        <p><a href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Пошук турів у системі</a></p>
+        <p><a href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Підібрати тур</a></p>
       </div>
     </div>
     <div class="footer__bottom">
@@ -1053,6 +1084,10 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
      note   — короткий коментар (необов’язково)
    Сегменти можна називати як завгодно, порядок збережеться.
    ============================================================ */
+/* Поки дані демонстраційні — кнопки «Рекомендовані готелі» приховані.
+   Підставите реальний список у HOTELS → поставте HOTELS_READY = true. */
+const HOTELS_READY = false;
+
 const HOTELS = {
   tr: { title:'Туреччина', flag:'f-tr', sub:'Аланія · Анталія · Сіде',
     segments:[
@@ -1145,7 +1180,7 @@ const HEAD_BG = {tr:'linear-gradient(120deg,#6E0019,#B01028)', eg:'linear-gradie
     use.setAttribute('href', '#' + d.flag);
     head.style.background = HEAD_BG[code] || 'var(--ink)';
 
-    let html = '<div class="hdemo"><b>Демо-дані.</b> Готелі та ціни нижче — заглушка для верстки. Замініть об’єкт HOTELS у коді сторінки на реальний список.</div>';
+    let html = HOTELS_READY ? '' : '<div class="hdemo"><b>Демо-дані.</b> Заглушка для верстки — замініть об’єкт HOTELS у коді сторінки.</div>';
     d.segments.forEach(function(seg){
       html += '<div class="hseg"><div class="hseg__title">' + seg.name + '</div>';
       seg.items.forEach(function(h){
@@ -1181,10 +1216,44 @@ const HEAD_BG = {tr:'linear-gradient(120deg,#6E0019,#B01028)', eg:'linear-gradie
   }
 
   document.querySelectorAll('[data-hotels]').forEach(function(btn){
+    if(!HOTELS_READY){ btn.style.display = 'none'; return; }
     btn.addEventListener('click', function(){ open(btn.getAttribute('data-hotels')); });
   });
   modal.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+})();
+
+
+/* ============ Бургер-меню ============ */
+(function(){
+  const b = document.getElementById('burger');
+  const n = document.getElementById('mobnav');
+  if(!b || !n) return;
+  function set(open){
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    n.hidden = !open;
+  }
+  b.addEventListener('click', function(){ set(n.hidden); });
+  n.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ set(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') set(false); });
+  window.addEventListener('resize', function(){ if(window.innerWidth > 900) set(false); });
+})();
+
+/* ============ Таби бюджету ============ */
+(function(){
+  const tabs = document.querySelectorAll('.ctab');
+  const cards = document.querySelectorAll('[data-cost]');
+  if(!tabs.length || !cards.length) return;
+  function show(code){
+    cards.forEach(function(c){ c.hidden = c.getAttribute('data-cost') !== code; });
+    tabs.forEach(function(t){
+      const on = t.getAttribute('data-c') === code;
+      t.classList.toggle('is-on', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+  tabs.forEach(function(t){ t.addEventListener('click', function(){ show(t.getAttribute('data-c')); }); });
+  show('tr');
 })();
 
 /* ============ Поява блоків при скролі ============ */
