@@ -267,7 +267,7 @@ p{margin:0 0 1em}
 @media(max-width:640px){.ctabs{gap:6px}.ctab{padding:9px 13px;font-size:14px}}
 
 /* ============ HOTELS MODAL ============ */
-.country__more{margin-top:14px;width:100%;justify-content:center;padding:13px 20px;font-size:15px}
+.country__more{margin-top:14px;width:100%;justify-content:center;padding:13px 16px;font-size:14.5px;text-align:center}
 .hmodal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
 .hmodal.is-open{display:flex}
 .hmodal__bg{position:absolute;inset:0;background:rgba(10,10,10,.62);backdrop-filter:blur(4px)}
@@ -289,6 +289,7 @@ p{margin:0 0 1em}
 .hotel:last-child{border-bottom:0}
 .hotel__main{flex:1;min-width:0}
 .hotel__name{font-weight:800;font-size:16px;margin:0 0 3px}
+.hstars{color:var(--amber);font-weight:700;letter-spacing:1px;font-size:13px}
 .hotel__meta{margin:0;font-size:13.5px;color:var(--muted)}
 .hotel__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}
 .htag{font-size:11.5px;font-weight:800;letter-spacing:.04em;padding:3px 9px;border-radius:99px;background:var(--sand);color:var(--ink)}
@@ -666,7 +667,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Розвинена українська інфраструктура в Аланії: школи, лікарі, магазини</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Не потрібна: до 90 днів протягом 180. Закордонний паспорт має бути дійсний ще 6 місяців на момент в’їзду; за даними МЗС доступний в’їзд і за ID-карткою.</div>
-          <button class="btn btn--dark country__more" data-hotels="tr" type="button">Рекомендовані готелі</button>
+          <button class="btn btn--dark country__more" data-hotels="tr" type="button">Готелі — від €667 за 30 ночей</button>
         </div>
       </article>
 
@@ -684,7 +685,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Довгі заїзди на 21–28 ночей у готелях коштують суттєво дешевше за подобову ціну</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Потрібна. Ставиться в аеропорту після прильоту — з 1 березня 2026 туристична віза коштує $30. Паспорт має бути дійсний щонайменше 6 місяців і мати вільну сторінку.</div>
-          <button class="btn btn--dark country__more" data-hotels="eg" type="button">Рекомендовані готелі</button>
+          <button class="btn btn--dark country__more" data-hotels="eg" type="button">Готелі — від €1174 за 30 ночей</button>
         </div>
       </article>
 
@@ -702,7 +703,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Найдешевша довга оренда серед далеких напрямків — місяць на Пхукеті часто дешевший за тиждень у Європі</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Не потрібна, але правила змінюються. Зараз діє безвіз на 60 днів; уряд уже схвалив повернення до 30 днів — воно запрацює через 15 днів після публікації в Royal Gazette. Обов’язкова онлайн-картка TDAC за 24–72 години до прильоту.</div>
-          <button class="btn btn--dark country__more" data-hotels="th" type="button">Рекомендовані готелі</button>
+          <button class="btn btn--dark country__more" data-hotels="th" type="button">Готелі — від €966 за 30 ночей</button>
         </div>
       </article>
 
@@ -758,7 +759,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
             <li>Захотілося снігу — Банско й Боровець за кілька годин дороги, можна з’їздити на вихідні</li>
           </ul>
           <div class="visa-note"><b>Віза</b> Не потрібна: Болгарія — повноцінний член Шенгену, діє правило 90/180 для біометричного паспорта.</div>
-          <button class="btn btn--dark country__more" data-hotels="bg" type="button">Рекомендовані готелі</button>
+          <button class="btn btn--dark country__more" data-hotels="bg" type="button">Готелі — від €607 за 30 ночей</button>
         </div>
       </article>
 
@@ -1005,7 +1006,7 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
     </div>
     <div class="hmodal__body" id="hmodalBody"></div>
     <div class="hmodal__foot">
-      <span>Ціни «від», за особу при двомісному розміщенні. Актуальна наявність — у системі бронювання.</span>
+      <span>Ціни — наземне обслуговування за 2 дорослих на 30 ночей, заїзд 01.11.2026. Актуальна вартість і наявність — у системі бронювання.</span>
       <a class="btn btn--primary" href="https://travelon.to/book/filter/packages" target="_blank" rel="noopener">Підібрати тур</a>
     </div>
   </div>
@@ -1132,101 +1133,77 @@ details p{color:var(--muted);padding-right:40px;font-size:16px}
 
 
 /* ============================================================
-   ГОТЕЛІ — ДЕМО-ДАНІ
-   Щоб підставити свій список, змініть тільки об’єкт HOTELS нижче.
-   Поля готелю:
-     name   — назва
-     city   — курорт або район
-     stars  — кількість зірок (число)
-     meal   — тип харчування: RO, BB, HB, FB, AI, UAI
-     from   — ціна «від» у євро за особу
-     nights — за скільки ночей вказана ціна
-     note   — короткий коментар (необов’язково)
-   Сегменти можна називати як завгодно, порядок збережеться.
+   ГОТЕЛІ, ЯКІ РЕКОМЕНДУЄМО
+   Країни без даних (наприклад es, cy) кнопку не показують —
+   просто додайте для них блок, і кнопка з’явиться сама.
+   Поля: name (обов’язково), stars (не обов’язково).
    ============================================================ */
-/* Поки дані демонстраційні — кнопки «Рекомендовані готелі» приховані.
-   Підставите реальний список у HOTELS → поставте HOTELS_READY = true. */
-const HOTELS_READY = true;   // ← поставте false перед публікацією, доки дані демонстраційні
-
 const HOTELS = {
-  tr: { title:'Туреччина', flag:'f-tr', sub:'Аланія · Анталія · Сіде',
+  tr: { title:'Туреччина', flag:'f-tr', sub:'Аланія · Анталія · Лара',
     segments:[
-      {name:'Економ', items:[
-        {name:'Demo Beach Hotel', city:'Аланія', stars:3, meal:'AI', from:290, nights:7, note:'200 м до пляжу'},
-        {name:'Demo City Suites', city:'Анталія', stars:3, meal:'BB', from:250, nights:7}
+      {name:'Апартаменти з кухнею', items:[
+        {name:'Club Sidar Hotel', meal:'RO', price:667, room:'Premium Apartment'},
+        {name:'Kleopatra Icaria Hotel', meal:'RO', price:884, room:'Standard Room'},
+        {name:'My Home Apart', meal:'RO', price:921, room:'1 Bedroom Apartment with Balcony'},
+        {name:'Carmen Suite Hotel', meal:'RO', price:1069, room:'Standard Room'},
+        {name:'Bayram Apart Hotel', meal:'RO', price:1132, room:'Economy Apartment'}
       ]},
-      {name:'Комфорт', items:[
-        {name:'Demo Resort & Spa', city:'Сіде', stars:4, meal:'AI', from:430, nights:7, note:'власний пляж, аквапарк'},
-        {name:'Demo Garden Hotel', city:'Аланія', stars:4, meal:'AI', from:390, nights:7}
-      ]},
-      {name:'Преміум', items:[
-        {name:'Demo Palace Deluxe', city:'Белек', stars:5, meal:'UAI', from:780, nights:7, note:'a la carte без доплат'}
+      {name:'Готелі з харчуванням', items:[
+        {name:'Relax Beach Hotel', stars:4, meal:'AI', price:1452, room:'Standard Room'},
+        {name:'Aska Just In Beach', stars:5, meal:'UAI', price:2564, room:'Anex Building Land View'},
+        {name:'Sherwood Exclusive Lara', stars:5, meal:'UAI', price:5823, room:'Deluxe Room Land View'}
       ]}
     ]},
-  eg: { title:'Єгипет', flag:'f-eg', sub:'Хургада · Шарм-ель-Шейх · Марса-Алам',
+  eg: { title:'Єгипет', flag:'f-eg', sub:'Хургада · Марса-Алам · Шарм-ель-Шейх',
     segments:[
-      {name:'Економ', items:[
-        {name:'Demo Sea View', city:'Хургада', stars:3, meal:'AI', from:310, nights:7},
-        {name:'Demo Bay Resort', city:'Шарм-ель-Шейх', stars:3, meal:'AI', from:330, nights:7}
+      {name:'Шарм-ель-Шейх', items:[
+        {name:'Coral Hills Resort', stars:4, meal:'HB', price:1174, city:'Хадаба', room:'Double Standard Garden View'},
+        {name:'Sharm Holiday Resort & Aqua Park', stars:4, meal:'AI', price:1908, city:'Наама Бей', room:'Standard Garden View'},
+        {name:'Cleopatra Luxury Resort', stars:5, meal:'AI', price:4136, city:'Набк Бей', room:'Double Superior Garden View'}
       ]},
-      {name:'Комфорт', items:[
-        {name:'Demo Reef Resort', city:'Марса-Алам', stars:4, meal:'AI', from:520, nights:7, note:'домашній риф біля берега'},
-        {name:'Demo Aqua Park', city:'Хургада', stars:4, meal:'AI', from:480, nights:7}
+      {name:'Хургада', items:[
+        {name:'MinaMark Resort & Spa', stars:4, meal:'AI', price:2086, city:'Даун Таун', room:'Double Club Room'},
+        {name:'Cleopatra Luxury Resort Makadi Bay', stars:5, meal:'AI', price:4196, city:'Макаді Бей', room:'Double Premium Deluxe Garden View'},
+        {name:'Premier Le Reve', stars:5, meal:'UAI', price:6399, city:'Сахл Хашиш', room:'Double Standard Garden View'}
       ]},
-      {name:'Преміум', items:[
-        {name:'Demo Grand Lagoon', city:'Шарм-ель-Шейх', stars:5, meal:'UAI', from:820, nights:7}
+      {name:'Марса-Алам', items:[
+        {name:'Sataya Resort Marsa Alam', stars:5, meal:'AI', price:3110, room:'Double Deluxe Pool View'}
       ]}
     ]},
-  th: { title:'Таїланд', flag:'f-th', sub:'Пхукет · Крабі · Самуї',
+  th: { title:'Таїланд', flag:'f-th', sub:'Паттайя · Пхукет',
     segments:[
-      {name:'Економ', items:[
-        {name:'Demo Patong Inn', city:'Пхукет', stars:3, meal:'BB', from:620, nights:10}
+      {name:'Паттайя', items:[
+        {name:'Pattaya Garden Hotel', stars:3, meal:'BB', price:966, room:'ROH'},
+        {name:'Welcome Jomtien Beach Hotel', stars:3, meal:'BB', price:1012, room:'Superior Sea View'},
+        {name:'Twin Palms Resort Pattaya', stars:3, meal:'BB', price:1058, room:'Standard'},
+        {name:'Crown Pattaya Hotel', stars:3, meal:'BB', price:1151, room:'Superior'},
+        {name:'The Jomtien Twelve Boutique Hotel', stars:2, meal:'BB', price:1243, room:'Standard'},
+        {name:'The Seasons Pattaya', stars:3, meal:'BB', price:1427, room:'Superior'},
+        {name:'Avalon Beach Resort Pattaya', stars:4, meal:'BB', price:2754, room:'Superior Pool View Twin Room'}
       ]},
-      {name:'Комфорт', items:[
-        {name:'Demo Beachfront Resort', city:'Крабі', stars:4, meal:'BB', from:940, nights:10, note:'перша лінія'},
-        {name:'Demo Island Villas', city:'Самуї', stars:4, meal:'HB', from:1010, nights:10}
-      ]},
-      {name:'Преміум', items:[
-        {name:'Demo Bay Luxury', city:'Пхукет', stars:5, meal:'BB', from:1560, nights:10, note:'вілли з басейном'}
+      {name:'Пхукет', items:[
+        {name:'7Q Patong Beach Hotel', stars:3, meal:'RO', price:1274, city:'Патонг', room:'Deluxe'},
+        {name:'Casa Del M Resort', stars:3, meal:'RO', price:1382, city:'Патонг', room:'Superior'},
+        {name:'I Dee Hotel', stars:3, meal:'RO', price:1484, city:'Патонг', room:'Superior'},
+        {name:'The Palms Kamala Beach', stars:4, meal:'RO', price:1786, city:'Камала', room:'Standard Balcony Room'},
+        {name:'Rawai Princess Hotel', stars:3, meal:'BB', price:1828, city:'Равай', room:'Deluxe'},
+        {name:'Andaman Seaside Resort', stars:3, meal:'RO', price:1922, city:'Банг Тао', room:'Standard Family Double'},
+        {name:'Karon Princess Hotel', stars:3, meal:'BB', price:2673, city:'Карон', room:'Superior Garden View'},
+        {name:'Sugar Marina Art Karon', stars:3, meal:'BB', price:3142, city:'Карон', room:'Deluxe Inner'}
       ]}
     ]},
-  es: { title:'Іспанія', flag:'f-es', sub:'Тенерифе · Гран-Канарія · Коста-дель-Соль',
+  bg: { title:'Болгарія', flag:'f-bg', sub:'Варна · Бургас · узбережжя',
     segments:[
-      {name:'Економ', items:[
-        {name:'Demo Apartments', city:'Тенерифе', stars:3, meal:'RO', from:390, nights:7, note:'кухня в номері'}
+      {name:'Бургаська область', items:[
+        {name:'Apartment Blue Komfort', stars:2, meal:'RO', price:607, city:'Св. Влас', room:'One-Bedroom Apartment'},
+        {name:'Alexandrov Residence Studio', meal:'RO', price:997, city:'Сонячний Берег', room:'Studio with Terrace'},
+        {name:'Gardenia Hills Hotel', stars:3, meal:'RO', price:1466, city:'Сонячний Берег', room:'Studio with Ocean View'},
+        {name:'Italia', stars:3, meal:'BB', price:1690, city:'Несебр', room:'DBL Standard'},
+        {name:'Hotel City', stars:3, meal:'RO', price:2200, city:'Бургас', room:'Double Room'}
       ]},
-      {name:'Комфорт', items:[
-        {name:'Demo Playa Hotel', city:'Гран-Канарія', stars:4, meal:'HB', from:680, nights:7},
-        {name:'Demo Costa Resort', city:'Малага', stars:4, meal:'BB', from:610, nights:7}
-      ]},
-      {name:'Преміум', items:[
-        {name:'Demo Ocean Grand', city:'Тенерифе', stars:5, meal:'HB', from:1150, nights:7}
-      ]}
-    ]},
-  cy: { title:'Кіпр', flag:'f-cy', sub:'Ларнака · Лімасол · Пафос',
-    segments:[
-      {name:'Економ', items:[
-        {name:'Demo Larnaca Bay', city:'Ларнака', stars:3, meal:'BB', from:420, nights:7}
-      ]},
-      {name:'Комфорт', items:[
-        {name:'Demo Coral Resort', city:'Пафос', stars:4, meal:'HB', from:690, nights:7, note:'перша лінія'},
-        {name:'Demo Marina Hotel', city:'Лімасол', stars:4, meal:'BB', from:730, nights:7}
-      ]},
-      {name:'Преміум', items:[
-        {name:'Demo Aphrodite Grand', city:'Пафос', stars:5, meal:'HB', from:1180, nights:7}
-      ]}
-    ]},
-  bg: { title:'Болгарія', flag:'f-bg', sub:'Варна · Бургас · Несебр · Созополь',
-    segments:[
-      {name:'Економ', items:[
-        {name:'Demo Sea Apartments', city:'Варна', stars:3, meal:'RO', from:210, nights:7, note:'довга оренда — за запитом'}
-      ]},
-      {name:'Комфорт', items:[
-        {name:'Demo Spa Hotel', city:'Помор’є', stars:4, meal:'HB', from:340, nights:7, note:'мінеральний басейн'},
-        {name:'Demo Old Town', city:'Несебр', stars:4, meal:'BB', from:320, nights:7}
-      ]},
-      {name:'Преміум', items:[
-        {name:'Demo Marine Grand', city:'Бургас', stars:5, meal:'HB', from:560, nights:7}
+      {name:'Варна', items:[
+        {name:'Victoria', stars:3, meal:'RO', price:1362, city:'Варна', room:'Double Economy'},
+        {name:'Estreya Residence', stars:4, meal:'BB', price:2433, city:'Св. Костянтин і Олена', room:'DBL Standard'}
       ]}
     ]}
 };
@@ -1253,20 +1230,19 @@ const HEAD_BG = {tr:'linear-gradient(120deg,#6E0019,#B01028)', eg:'linear-gradie
     use.setAttribute('href', '#' + d.flag);
     head.style.background = HEAD_BG[code] || 'var(--ink)';
 
-    let html = HOTELS_READY ? '' : '<div class="hdemo"><b>Демо-дані.</b> Заглушка для верстки — замініть об’єкт HOTELS у коді сторінки.</div>';
+    let html = '';
     d.segments.forEach(function(seg){
       html += '<div class="hseg"><div class="hseg__title">' + seg.name + '</div>';
       seg.items.forEach(function(h){
+        const meta = [h.city, h.room].filter(Boolean).join(' · ');
+        const perNight = h.price ? Math.round(h.price / 60) : 0;
         html += '<div class="hotel">' +
           '<div class="hotel__main">' +
-            '<p class="hotel__name">' + h.name + ' ' + '★'.repeat(h.stars) + '</p>' +
-            '<p class="hotel__meta">' + h.city + (h.note ? ' · ' + h.note : '') + '</p>' +
-            '<div class="hotel__tags">' +
-              '<span class="htag htag--meal">' + h.meal + ' — ' + (MEALS[h.meal] || '') + '</span>' +
-              '<span class="htag">' + h.nights + ' ночей</span>' +
-            '</div>' +
+            '<p class="hotel__name">' + h.name + (h.stars ? ' <b class="hstars">' + '★'.repeat(h.stars) + '</b>' : '') + '</p>' +
+            (meta ? '<p class="hotel__meta">' + meta + '</p>' : '') +
+            (h.meal ? '<div class="hotel__tags"><span class="htag htag--meal">' + h.meal + ' — ' + (MEALS[h.meal] || '') + '</span></div>' : '') +
           '</div>' +
-          '<div class="hotel__price"><b>від €' + h.from + '</b><span>за особу</span></div>' +
+          (h.price ? '<div class="hotel__price"><b>€' + h.price.toLocaleString('uk-UA') + '</b><span>≈€' + perNight + '/ніч з особи</span></div>' : '') +
         '</div>';
       });
       html += '</div>';
@@ -1289,7 +1265,7 @@ const HEAD_BG = {tr:'linear-gradient(120deg,#6E0019,#B01028)', eg:'linear-gradie
   }
 
   document.querySelectorAll('[data-hotels]').forEach(function(btn){
-    if(!HOTELS_READY){ btn.style.display = 'none'; return; }
+    if(!HOTELS[btn.getAttribute('data-hotels')]){ btn.style.display = 'none'; return; }
     btn.addEventListener('click', function(){ open(btn.getAttribute('data-hotels')); });
   });
   modal.querySelectorAll('[data-close]').forEach(function(el){ el.addEventListener('click', close); });
